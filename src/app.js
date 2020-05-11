@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('./database/connection');
 
 const express = require('express');
 const logger = require('morgan');
@@ -7,6 +8,7 @@ const Routes = require('./routes');
 
 const app = express();
 const port = process.env.PORT;
+
 
 app.set('port', port);
 
