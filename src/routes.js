@@ -6,7 +6,7 @@ const AuthMiddleware = require('./middlewares/Auth');
 
 const ToolsController = require('./controllers/ToolsController');
 const UserController = require('./controllers/UserController');
-const AuthController = require('./controllers/AuthController');
+const LoginController = require('./controllers/LoginController');
 
 Routes
 .get('/tools', AuthMiddleware, ToolsController.index)
@@ -19,6 +19,6 @@ Routes
 .post('/users', UserController.create)
 
 Routes
-.post('/login', AuthController.index);
+.post('/login', LoginController.index);
 
 module.exports = Routes;
