@@ -16,7 +16,8 @@ module.exports = {
       title,
       link,
       description,
-      tags: TagsArray
+      tags: TagsArray,
+      user: req.userId,
     })
     return res.status(201).json(ToolResponse);
   },
@@ -31,6 +32,6 @@ module.exports = {
   async destroy(req, res) {
     const { id } = req.params;
     await Tool.findOneAndDelete({_id: id})
-    res.send();
+    res.json({ok: true});
   }
 };
