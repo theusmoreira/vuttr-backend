@@ -1,0 +1,22 @@
+{
+  "name": "challenge-node-vuttr",
+  "version": "1.0.0",
+  "description": "API e banco de dados para a aplicação VUTTR (Very Useful Tools to Remember).",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matheus Santos",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.13",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
