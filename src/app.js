@@ -18,4 +18,4 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(Routes);
 
-app.listen(port, () => console.log(`Server connection in Port ${port}`));
+app.listen(port, () => console.log(`> [Server] start in Port ${port}`));
