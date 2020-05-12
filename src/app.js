@@ -3,6 +3,7 @@ require('./database/connection');
 
 const express = require('express');
 const logger = require('morgan');
+const cors = require('cors');
 
 const Routes = require('./routes');
 
@@ -15,6 +16,7 @@ app.set('port', port);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 app.use(Routes);
 
