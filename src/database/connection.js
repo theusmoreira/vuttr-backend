@@ -7,8 +7,13 @@ const options = {
   useCreateIndex: true
 };
 
+mongoose
+.connection
+.on('error', err => console.log(err))
+.on('connected', () => console.log('> [Database] connected'));
+
 const mongo = mongoose.connect(uri, options)
-.then(()=> console.log('DB connect'))
 .catch(err => console.log(err));
+
 
 module.exports = mongo;
