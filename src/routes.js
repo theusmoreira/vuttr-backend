@@ -9,16 +9,16 @@ const UserController = require('./controllers/UserController');
 const LoginController = require('./controllers/LoginController');
 
 Routes
-.get('/tools', AuthMiddleware, ToolsController.index)
-.post('/tools', AuthMiddleware, ToolsController.create)
-.delete('/tools/:id', AuthMiddleware, ToolsController.destroy)
-.get('/tools/search', AuthMiddleware, ToolsController.show);
+  .get('/tools', AuthMiddleware, ToolsController.index)
+  .post('/tools', AuthMiddleware, ToolsController.create)
+  .delete('/tools/:id', AuthMiddleware, ToolsController.destroy)
+  .get('/tools/search', AuthMiddleware, ToolsController.show);
 
 Routes
-.get('/users', UserController.index)
-.post('/users', UserController.create)
+  .get('/users', UserController.index)
+  .post('/users', UserController.create)
 
 Routes
-.post('/login', LoginController.index);
+  .post('/login', LoginController.index);
 
 module.exports = Routes;

@@ -4,7 +4,7 @@ const ArrayToString = require('../utils/ArrayToString');
 
 module.exports = {
   async index(req, res) {
-    const tools = await Tool.find({user: req.userId});
+    const tools = await Tool.find({ user: req.userId });
     return res.json(tools);
   },
 
@@ -12,18 +12,18 @@ module.exports = {
     const { title, link, description, tags } = req.body;
     const TagsArray = ArrayToString(tags);
 
-   try {
-    const ToolResponse = await Tool.create({
-      title,
-      link,
-      description,
-      tags: TagsArray,
-      user: req.userId,
-    })
-    return res.status(201).json(ToolResponse);
-   } catch (error) {
-     return res.status(400).json({error: 'Create tool failed'});
-   }
+    try {
+      const ToolResponse = await Tool.create({
+        title,
+        link,
+        description,
+        tags: TagsArray,
+        user: req.userId,
+      })
+      return res.status(201).json(ToolResponse);
+    } catch (error) {
+      return res.status(400).json({ error: 'Create tool failed' });
+    }
   },
 
   async show(req, res) {
@@ -36,28 +36,28 @@ module.exports = {
       });
       return res.json(ToolTag);
     } catch (error) {
-      return res.status(400).json({error: 'Tag fetch failed'})
+      return res.status(400).json({ error: 'Tag fetch failed' })
     }
-    
+
   },
 
   async destroy(req, res) {
     const { id } = req.params;
     try {
-      const ToolFind = await Tool.findOne({ 
+      const ToolFind = await Tool.findOne({
         user: req.userId,
-        _id: id 
+        _id: id
       });
       if (!ToolFind) {
         res.status(400).json({ error: 'Tool not exits' });
       }
-      await Tool.findOneAndDelete({ 
+      await Tool.findOneAndDelete({
         user: req.userId,
         _id: id
       });
       return res.send(204);
     } catch (error) {
       res.status(400).json({ error: 'Error in delete' })
-    }I
+    } I
   }
 };

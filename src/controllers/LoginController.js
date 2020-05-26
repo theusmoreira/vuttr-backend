@@ -10,17 +10,17 @@ module.exports = {
 
     const user = await User.findOne({ email }).select('+password');
 
-    if(!user) {
-      return res.status(400).json({error: 'User not exits'});
+    if (!user) {
+      return res.status(400).json({ error: 'User not exits' });
     }
-    if(!await bcrypt.compare(password, user.password)) {
-      return res.status(400).json({error: 'Password Invalid'});
+    if (!await bcrypt.compare(password, user.password)) {
+      return res.status(400).json({ error: 'Password Invalid' });
     }
     user.password = undefined;
 
     return res.status(200).json({
-      user, 
-      token: generateToken({id: user.id})
+      user,
+      token: generateToken({ id: user.id })
     });
   }
 };
