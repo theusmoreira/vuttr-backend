@@ -4,7 +4,7 @@ const ArrayToString = require('../utils/ArrayToString');
 
 module.exports = {
   async index(req, res) {
-    const tools = await Tool.find();
+    const tools = await Tool.find({user: req.userId});
     return res.json(tools);
   },
 
@@ -31,6 +31,7 @@ module.exports = {
 
     try {
       const ToolTag = await Tool.find({
+        user: req.userId,
         tags: tag
       });
       return res.json(ToolTag);
@@ -43,12 +44,18 @@ module.exports = {
   async destroy(req, res) {
     const { id } = req.params;
     try {
-      const ToolFind = await Tool.findOne({ _id: id });
+      const ToolFind = await Tool.findOne({ 
+        user: req.userId,
+        _id: id 
+      });
       if (!ToolFind) {
         res.status(400).json({ error: 'Tool not exits' });
       }
-      await Tool.findByIdAndDelete({ _id: id });
-      return res.status(204).json({delete: true });
+      await Tool.findOneAndDelete({ 
+        user: req.userId,
+        _id: id
+      });
+      return res.send(204);
     } catch (error) {
       res.status(400).json({ error: 'Error in delete' })
     }I
