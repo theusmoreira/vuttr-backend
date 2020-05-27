@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const ToolSchema = new mongoose.Schema({
   title: {
@@ -22,6 +22,6 @@ const ToolSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   }
-});
+})
 
-module.exports = mongoose.model('Tool', ToolSchema);
+module.exports = mongoose.model('Tool', ToolSchema)
