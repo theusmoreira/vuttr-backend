@@ -15,7 +15,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(logger('dev'))
 
-app.use(cors())
+app.use(cors({
+  origin: true
+}))
 app.use(Routes)
 
 app.listen(port, () => console.log(`> [Server] start in Port ${port}`))
