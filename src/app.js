@@ -9,14 +9,13 @@ const Routes = require('./routes')
 
 const app = express()
 const port = process.env.PORT
-
-app.use(cors())
-
 app.set('port', port)
-app.use(Routes)
 
-app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(logger('dev'))
+
+app.use(cors())
+app.use(Routes)
 
 app.listen(port, () => console.log(`> [Server] start in Port ${port}`))
