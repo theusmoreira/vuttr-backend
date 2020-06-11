@@ -1,24 +1,24 @@
-const { Router } = require('express')
+const { Router } = require('express');
 
-const Routes = Router()
+const Routes = Router();
 
-const AuthMiddleware = require('./middlewares/Auth')
+const AuthMiddleware = require('./middlewares/Auth');
 
-const ToolsController = require('./controllers/ToolsController')
-const UserController = require('./controllers/UserController')
-const LoginController = require('./controllers/LoginController')
+const ToolsController = require('./controllers/ToolsController');
+const FilterToolsController = require('./controllers/FilterToolsController');
 
-Routes
-  .get('/tools', AuthMiddleware, ToolsController.index)
-  .post('/tools', AuthMiddleware, ToolsController.create)
-  .delete('/tools/:id', AuthMiddleware, ToolsController.destroy)
-  .get('/tools/search', AuthMiddleware, ToolsController.show)
+const UserController = require('./controllers/UserController');
 
-Routes
-  .get('/users', UserController.index)
-  .post('/users', UserController.create)
+const LoginController = require('./controllers/LoginController');
 
-Routes
-  .post('/login', LoginController.index)
+Routes.get('/', AuthMiddleware, ToolsController.index);
 
-module.exports = Routes
+Routes.get('/tools', AuthMiddleware, FilterToolsController.index);
+Routes.post('/tools', AuthMiddleware, ToolsController.create);
+Routes.delete('/tools/:id', AuthMiddleware, ToolsController.destroy);
+
+Routes.post('/users', UserController.create);
+
+Routes.post('/login', LoginController.store);
+
+module.exports = Routes;
